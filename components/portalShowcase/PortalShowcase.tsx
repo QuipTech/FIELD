@@ -38,7 +38,7 @@ export const PortalShowcase = () => {
             ))}
           </div>
           <a
-            href="#portal-login"
+            href="https://portal.quiptechfield.com.au/login"
             className="mt-2 inline-flex h-12 w-fit items-center gap-2 rounded-lg bg-primary px-[22px] text-base font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-primaryHover"
           >
             See the portal

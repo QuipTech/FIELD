@@ -14,17 +14,23 @@ const trackingClass: Record<NonNullable<TrustedLogo["tracking"]>, string> = {
 };
 
 const LogoItem = ({ logo }: { logo: TrustedLogo }) => (
-  <span
-    className={`flex shrink-0 items-center gap-2 whitespace-nowrap text-lg text-marqueeGray min-[900px]:text-xl ${weightClass[logo.weight ?? "bold"]} ${trackingClass[logo.tracking ?? "normal"]} ${logo.italic ? "italic" : ""}`}
+  <a
+    href={logo.url}
+    target="_blank"
+    rel="noopener noreferrer"
+    className={`flex shrink-0 items-center gap-2 whitespace-nowrap text-lg text-marqueeGray transition-colors hover:text-primary min-[900px]:text-xl ${weightClass[logo.weight ?? "bold"]} ${trackingClass[logo.tracking ?? "normal"]} ${logo.italic ? "italic" : ""}`}
   >
     {logo.icon && <Icon name={logo.icon} size={18} strokeWidth={2} />}
     {logo.name}
-  </span>
+  </a>
 );
 
 export const TrustedMarquee = () => {
   return (
-    <section className="overflow-hidden border-b border-borderGray bg-surfaceGrayAlt px-6 py-10 min-[900px]:px-16">
+    <section
+      id="partners"
+      className="scroll-mt-28 overflow-hidden border-b border-borderGray bg-surfaceGrayAlt px-6 py-10 min-[900px]:scroll-mt-32 min-[900px]:px-16"
+    >
       <span className="mb-6 block text-center text-xs font-semibold uppercase tracking-[0.08em] text-mutedGray">
         Trusted by teams running critical fleets
       </span>

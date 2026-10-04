@@ -33,7 +33,7 @@ export const Hero = () => {
           </p>
           <div className="flex flex-wrap justify-start gap-3">
             <a
-              href="#demo"
+              href="/demo"
               className="inline-flex h-12 items-center gap-2 rounded-lg bg-primary px-[22px] text-base font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-primaryHover"
             >
               Request a demo

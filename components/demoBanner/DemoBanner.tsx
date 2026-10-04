@@ -19,7 +19,7 @@ export const DemoBanner = () => {
           </p>
         </div>
         <a
-          href="#demo"
+          href="/demo"
           className="inline-flex h-[52px] items-center justify-center gap-2 rounded-lg bg-white px-6 text-base font-semibold text-primary transition-transform hover:-translate-y-0.5"
         >
           Request a demo

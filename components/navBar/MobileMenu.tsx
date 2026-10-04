@@ -22,14 +22,14 @@ export const MobileMenu = ({ open, onClose }: MobileMenuProps) => {
       ))}
       <div className="my-2 h-px bg-borderGray" />
       <a
-        href="#demo"
+        href="/demo"
         onClick={onClose}
         className="rounded-[10px] px-3.5 py-3 text-[15px] font-medium text-navText"
       >
         Book a demo
       </a>
       <a
-        href="#portal-login"
+        href="https://portal.quiptechfield.com.au/login"
         onClick={onClose}
         className="mt-1 flex h-11 items-center justify-center rounded-full bg-primary text-[15px] font-semibold text-white"
       >

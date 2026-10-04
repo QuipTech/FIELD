@@ -65,13 +65,13 @@ const StatusCard = () => (
         Technician + AI
       </span>
       <span className="relative block h-[15px] overflow-hidden">
-        <span className="absolute animate-statusCycle whitespace-nowrap text-[13px] font-medium text-ink">
+        <span className="absolute inset-0 animate-statusCycle whitespace-nowrap text-[13px] font-medium text-ink">
           Fault detected
         </span>
-        <span className="absolute animate-statusCycle whitespace-nowrap text-[13px] font-medium text-ink [animation-delay:2.5s]">
+        <span className="absolute inset-0 animate-statusCycle whitespace-nowrap text-[13px] font-medium text-ink [animation-delay:2.5s]">
           Diagnosing live…
         </span>
-        <span className="absolute animate-statusCycle whitespace-nowrap text-[13px] font-medium text-ink [animation-delay:5s]">
+        <span className="absolute inset-0 animate-statusCycle whitespace-nowrap text-[13px] font-medium text-ink [animation-delay:5s]">
           Fix confirmed
         </span>
       </span>

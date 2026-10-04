@@ -16,7 +16,7 @@ export const PricingCard = ({ name, price, description, ctaLabel, highlighted }:
             {description}
           </p>
           <a
-            href="#demo"
+            href="/demo"
             className="text-sm font-semibold text-primary transition-colors duration-300 group-hover:text-white"
           >
             {ctaLabel}
@@ -39,7 +39,7 @@ export const PricingCard = ({ name, price, description, ctaLabel, highlighted }:
         <p className="flex-1 text-sm leading-[1.55] text-bodyGray group-hover:text-blue-100/90">
           {description}
         </p>
-        <a href="#demo" className="text-sm font-semibold text-primary group-hover:text-white">
+        <a href="/demo" className="text-sm font-semibold text-primary group-hover:text-white">
           {ctaLabel}
         </a>
       </div>

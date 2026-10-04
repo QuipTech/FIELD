@@ -16,7 +16,7 @@ export const Faq = () => {
         </h2>
         <p className="text-[15px] text-bodyGray">
           Something not covered here?{" "}
-          <a href="#demo" className="text-primary hover:text-primaryHover">
+          <a href="/contact" className="text-primary hover:text-primaryHover">
             Ask a support engineer
           </a>
           .

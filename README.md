@@ -33,6 +33,7 @@ app/            # App Router entry (layout, page, global styles)
 components/     # Page sections, one folder per section
 lib/            # Static content/data used by components (nav links, pricing tiers, FAQ items, etc.)
 public/         # Static assets (images, videos)
+chatbot-api/    # Serverless Bedrock backend for the support chat widget (deployed separately, see chatbot-api/README.md)
 ```
 
 ## Deployment
@@ -51,5 +52,14 @@ Pushing to `main` triggers [`.github/workflows/deploy-landing.yml`](.github/work
 | `AWS_ROLE_ARN`               | IAM role assumed via OIDC, scoped to this repo    |
 | `S3_BUCKET_NAME`              | Target S3 bucket for the static site              |
 | `CLOUDFRONT_DISTRIBUTION_ID`  | CloudFront distribution to invalidate on deploy   |
+
+### Required GitHub variables
+
+| Variable             | Description                                                        |
+| -------------------- | ------------------------------------------------------------------ |
+| `CHAT_API_URL`       | `ApiUrl` output of the `chatbot-api` stack, used by the chat widget |
+| `TURNSTILE_SITE_KEY` | Cloudflare Turnstile site key for the chat widget                  |
+
+For local development, copy `.env.example` to `.env.local` and fill in the same values.
 
 The IAM role's trust policy must allow `sts:AssumeRoleWithWebIdentity` from `token.actions.githubusercontent.com` for this repository.

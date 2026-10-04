@@ -17,6 +17,7 @@ import { Faq } from "@/components/faq/Faq";
 import { DemoBanner } from "@/components/demoBanner/DemoBanner";
 import { Footer } from "@/components/footer/Footer";
 import { SupportFab } from "@/components/supportFab/SupportFab";
+import { BackToTop } from "@/components/backToTop/BackToTop";
 
 const HomePage = () => {
   return (
@@ -42,6 +43,7 @@ const HomePage = () => {
       </main>
       <Footer />
       <SupportFab />
+      <BackToTop />
     </div>
   );
 };
