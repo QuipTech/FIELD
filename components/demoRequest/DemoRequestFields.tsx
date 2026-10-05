@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, type ChangeEvent, type FormEvent } from "react";
-import { useTurnstile } from "@/components/common/useTurnstile";
 import { DemoFormField } from "@/components/demoRequest/DemoFormField";
 import { buildDemoRequestPayload, submitDemoRequest } from "@/lib/demoRequestApi";
 import {
@@ -28,7 +27,6 @@ type DemoRequestFieldsProps = {
 };
 
 export const DemoRequestFields = ({ onSuccess }: DemoRequestFieldsProps) => {
-  const turnstile = useTurnstile();
   const [values, setValues] = useState(emptyValues);
   const [errors, setErrors] = useState<DemoFieldErrors>({});
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -42,7 +40,7 @@ export const DemoRequestFields = ({ onSuccess }: DemoRequestFieldsProps) => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (submitting || !turnstile.token) return;
+    if (submitting) return;
 
     const fieldErrors = validateDemoRequest(values);
     const firstInvalid = Object.keys(fieldErrors)[0];
@@ -53,13 +51,10 @@ export const DemoRequestFields = ({ onSuccess }: DemoRequestFieldsProps) => {
     }
 
     const website = String(new FormData(event.currentTarget).get("website") ?? "");
-    // Tokens are single use, so this also resets the widget for any retry.
-    const token = turnstile.consumeToken();
-    if (!token) return;
 
     setSubmitting(true);
     setSubmitError(null);
-    const result = await submitDemoRequest(buildDemoRequestPayload(values, token, website));
+    const result = await submitDemoRequest(buildDemoRequestPayload(values, website));
     setSubmitting(false);
 
     if (result.ok) onSuccess();
@@ -134,20 +129,17 @@ export const DemoRequestFields = ({ onSuccess }: DemoRequestFieldsProps) => {
         <input id="demo-website" name="website" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
       </div>
 
-      <div ref={turnstile.containerRef} />
-
       <div role="alert" className="text-[13px] text-priorityHigh empty:hidden">
-        {submitError ??
-          (turnstile.failed ? "We couldn't verify your browser. Please refresh the page and try again." : null)}
+        {submitError}
       </div>
 
       <button
         type="submit"
-        disabled={submitting || !turnstile.token}
+        disabled={submitting}
         aria-busy={submitting}
         className="mt-2 inline-flex h-12 w-full items-center justify-center rounded-lg bg-primary text-base font-medium text-white transition-all enabled:hover:-translate-y-0.5 enabled:hover:bg-primaryHover disabled:cursor-not-allowed disabled:opacity-50 min-[520px]:w-fit min-[520px]:px-8"
       >
-        {submitting ? "Sending…" : turnstile.token ? "Schedule demo" : "Verifying…"}
+        {submitting ? "Sending…" : "Schedule demo"}
       </button>
       <p className="text-[13px] text-mutedGray">
         We&rsquo;ll only use these details to arrange your demo.

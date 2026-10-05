@@ -1,19 +1,25 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  FIELD website support chatbot (Amazon Bedrock). Standalone stack, fully separate
+  FIELD website support chatbot (Google Gemini API). Standalone stack, fully separate
   from the FIELD platform; it has no access to customer or tenant data.
 
 Parameters:
-  BedrockModelId:
+  GeminiApiKey:
     Type: String
-    Default: au.anthropic.claude-haiku-4-5-20251001-v1:0
-    Description: >
-      Bedrock model or inference profile ID used with the Converse API.
-      Claude Haiku 4.5 (AU profile) by default; e.g. apac.amazon.nova-micro-v1:0 for Nova Micro.
+    NoEcho: true
+    Description: Google Gemini API key (from Google AI Studio)
+  GeminiModel:
+    Type: String
+    Default: gemini-3.8-flash
+    Description: Gemini model ID used with the Interactions API
+  GeminiFallbackModel:
+    Type: String
+    Default: gemini-3.5-flash-lite
+    Description: Model retried once when the main model is overloaded (429/5xx) or times out
   AllowedOrigin:
     Type: String
-    Description: The only origin allowed to call the API, e.g. https://www.quiptechfield.com (no trailing slash)
+    Description: Comma-separated origins allowed to call the API, e.g. https://quiptechfield.com.au,https://www.quiptechfield.com.au (no trailing slashes, no spaces)
   DailyLimitPerIp:
     Type: Number
     Default: 20
@@ -39,8 +45,7 @@ Resources:
     Type: AWS::Serverless::HttpApi
     Properties:
       CorsConfiguration:
-        AllowOrigins:
-          - !Ref AllowedOrigin
+        AllowOrigins: !Split [",", !Ref AllowedOrigin]
         AllowMethods:
           - POST
           - OPTIONS
@@ -71,11 +76,13 @@ Resources:
         - arm64
       MemorySize: 256
       Timeout: 20
-      ReservedConcurrentExecutions: 5
+      # ReservedConcurrentExecutions: 5  # re-enable once the account concurrency limit is above 10
       Environment:
         Variables:
           # AWS_REGION is set by Lambda automatically and is reserved, so it isn't listed here.
-          BEDROCK_MODEL_ID: !Ref BedrockModelId
+          GEMINI_API_KEY: !Ref GeminiApiKey
+          GEMINI_MODEL: !Ref GeminiModel
+          GEMINI_FALLBACK_MODEL: !Ref GeminiFallbackModel
           ALLOWED_ORIGIN: !Ref AllowedOrigin
           DAILY_LIMIT_PER_IP: !Ref DailyLimitPerIp
           GLOBAL_DAILY_LIMIT: !Ref GlobalDailyLimit
@@ -85,12 +92,6 @@ Resources:
           TABLE_NAME: !Ref UsageTable
       Policies:
         - Statement:
-            - Effect: Allow
-              Action: bedrock:InvokeModel
-              Resource:
-                # Cross-region inference profiles route to foundation models in other regions.
-                - arn:aws:bedrock:*::foundation-model/*
-                - !Sub arn:aws:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/*
             - Effect: Allow
               Action: ses:SendEmail
               Resource: !Sub arn:aws:ses:${AWS::Region}:${AWS::AccountId}:identity/*

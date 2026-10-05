@@ -8,7 +8,7 @@ const MAX_BODY_BYTES = 64 * 1024;
 
 export const handler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyStructuredResultV2> => {
   // API Gateway's CORS config covers browsers; this also turns away other origins that call directly.
-  if (event.headers.origin !== config.allowedOrigin) return json(403, { error: "forbidden" });
+  if (!config.allowedOrigins.includes(event.headers.origin ?? "")) return json(403, { error: "forbidden" });
 
   const raw = event.isBase64Encoded ? Buffer.from(event.body ?? "", "base64").toString("utf8") : event.body ?? "";
   if (Buffer.byteLength(raw) > MAX_BODY_BYTES) return json(413, { error: "payload_too_large" });

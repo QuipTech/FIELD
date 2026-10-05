@@ -33,7 +33,7 @@ app/            # App Router entry (layout, page, global styles)
 components/     # Page sections, one folder per section
 lib/            # Static content/data used by components (nav links, pricing tiers, FAQ items, etc.)
 public/         # Static assets (images, videos)
-chatbot-api/    # Serverless Bedrock backend for the support chat widget (deployed separately, see chatbot-api/README.md)
+chatbot-api/    # Serverless Gemini backend for the support chat widget (deployed separately, see chatbot-api/README.md)
 ```
 
 ## Deployment

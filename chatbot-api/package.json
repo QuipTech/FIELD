@@ -2,7 +2,7 @@
   "name": "field-chatbot-api",
   "version": "0.1.0",
   "private": true,
-  "description": "Serverless Bedrock chat API for the FIELD landing page support widget",
+  "description": "Serverless Gemini chat API for the FIELD landing page support widget",
   "scripts": {
     "typecheck": "tsc --noEmit",
     "build": "sam build",
@@ -10,7 +10,6 @@
     "deploy:guided": "sam build && sam deploy --guided"
   },
   "dependencies": {
-    "@aws-sdk/client-bedrock-runtime": "^3.700.0",
     "@aws-sdk/client-dynamodb": "^3.700.0",
     "@aws-sdk/client-sesv2": "^3.700.0"
   },

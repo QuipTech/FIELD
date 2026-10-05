@@ -8,7 +8,6 @@ export type DemoRequestPayload = {
   country: string;
   phone?: string;
   message?: string;
-  turnstileToken: string;
   website: string;
 };
 
@@ -25,7 +24,6 @@ const API_BASE_URL = (process.env.NEXT_PUBLIC_API_BASE_URL ?? "").replace(/\/+$/
 // Trims every value and leaves out empty optional fields; the API rejects unknown keys.
 export const buildDemoRequestPayload = (
   values: DemoRequestValues,
-  turnstileToken: string,
   website: string,
 ): DemoRequestPayload => {
   const phone = values.phone.trim();
@@ -39,7 +37,6 @@ export const buildDemoRequestPayload = (
     country: values.country.trim(),
     ...(phone && { phone }),
     ...(message && { message }),
-    turnstileToken,
     website,
   };
 };

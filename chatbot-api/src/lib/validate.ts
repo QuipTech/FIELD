@@ -32,7 +32,7 @@ const parseMessages = (input: unknown): Result<ChatMessage[]> => {
   return { ok: true, value: messages };
 };
 
-// Keeps the last HISTORY_LIMIT messages, shaped the way Bedrock expects:
+// Keeps the last HISTORY_LIMIT messages, shaped the way Gemini expects:
 // starts with a user turn, roles alternate, and ends with the new user message.
 export const parseChatHistory = (input: unknown): Result<ChatMessage[]> => {
   const parsed = parseMessages(input);

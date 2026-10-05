@@ -12,6 +12,8 @@ export const replies = {
     "We've hit today's chat limit. Please reach us through the contact page at /contact and the team will get back to you.",
   verificationFailed:
     "Sorry, we couldn't confirm you're human. Please refresh the page and try again, or contact us at /contact.",
+  noImages:
+    "I'm the FIELD support assistant, so I can only answer questions in text and can't generate images. Happy to help with anything about FIELD, though.",
   unavailable:
     "Sorry, I'm having trouble right now. Please try again in a moment, or reach the team at /contact.",
 };
