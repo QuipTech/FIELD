@@ -58,7 +58,8 @@ Pushing to `main` triggers [`.github/workflows/deploy-landing.yml`](.github/work
 | Variable             | Description                                                        |
 | -------------------- | ------------------------------------------------------------------ |
 | `CHAT_API_URL`       | `ApiUrl` output of the `chatbot-api` stack, used by the chat widget |
-| `TURNSTILE_SITE_KEY` | Cloudflare Turnstile site key for the chat widget                  |
+| `API_BASE_URL`       | FIELD backend API base URL (no trailing slash), used by the demo request form |
+| `TURNSTILE_SITE_KEY` | Cloudflare Turnstile site key for the chat widget and demo request form |
 
 For local development, copy `.env.example` to `.env.local` and fill in the same values.
 

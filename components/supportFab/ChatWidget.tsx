@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/icons/Icon";
 import { LeadForm } from "@/components/supportFab/LeadForm";
-import { useTurnstile } from "@/components/supportFab/useTurnstile";
+import { useTurnstile } from "@/components/common/useTurnstile";
 import {
   MAX_MESSAGE_LENGTH,
   sendChatMessage,
