@@ -30,10 +30,10 @@ jobs:
       - name: Build static export
         run: npm run build
         env:
-          # Public values baked into the static bundle (set as GitHub repository variables)
-          NEXT_PUBLIC_CHAT_API_URL: ${{ vars.CHAT_API_URL }}
-          NEXT_PUBLIC_API_BASE_URL: ${{ vars.API_BASE_URL }}
-          NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.TURNSTILE_SITE_KEY }}
+          # Public values baked into the static bundle (set as GitHub repository secrets)
+          NEXT_PUBLIC_CHAT_API_URL: ${{ secrets.CHAT_API_URL }}
+          NEXT_PUBLIC_API_BASE_URL: ${{ secrets.API_BASE_URL }}
+          NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ secrets.TURNSTILE_SITE_KEY }}
         # requires output: 'export' in next.config.js
 
       - name: Debug OIDC claim values
