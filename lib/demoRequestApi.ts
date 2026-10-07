@@ -18,6 +18,9 @@ type DemoRequestErrorBody = {
 };
 
 const GENERIC_ERROR = "Something went wrong. Please try again.";
+const NOT_CONFIGURED_ERROR =
+  "Demo requests aren't available right now (the form isn't connected to our server). Please email us instead.";
+const NETWORK_ERROR = "We couldn't reach our server. Check your internet connection and try again.";
 
 const API_BASE_URL = (process.env.NEXT_PUBLIC_API_BASE_URL ?? "").replace(/\/+$/, "");
 
@@ -41,30 +44,41 @@ export const buildDemoRequestPayload = (
   };
 };
 
+const firstMessage = (body: DemoRequestErrorBody) =>
+  Array.isArray(body.message) ? body.message[0] : body.message;
+
 export const getDemoRequestErrorMessage = (status: number, body: DemoRequestErrorBody) => {
-  if (status === 400) {
-    const message = Array.isArray(body.message) ? body.message[0] : body.message;
-    return message || GENERIC_ERROR;
-  }
-  if (status === 429) return "Too many requests. Please try again later.";
+  if (status === 400 || status === 422) return firstMessage(body) || "Please check your details and try again.";
+  if (status === 404) return "Demo requests aren't available right now. Please try again later or email us.";
+  if (status === 429) return "Too many requests. Please wait a few minutes and try again.";
   if (status === 503) return "We couldn't send your request just now. Please try again in a few minutes.";
-  return GENERIC_ERROR;
+  if (status >= 500) return `Our server had a problem (error ${status}). Please try again in a few minutes.`;
+  return firstMessage(body) || `${GENERIC_ERROR} (error ${status})`;
 };
 
 export const submitDemoRequest = async (payload: DemoRequestPayload): Promise<DemoRequestResult> => {
-  if (!API_BASE_URL) return { ok: false, message: GENERIC_ERROR };
+  if (!API_BASE_URL) {
+    // Set NEXT_PUBLIC_API_BASE_URL (.env.local locally, API_BASE_URL secret in GitHub Actions) and rebuild.
+    console.error("Demo request: NEXT_PUBLIC_API_BASE_URL was empty when this site was built.");
+    return { ok: false, message: NOT_CONFIGURED_ERROR };
+  }
 
+  let response: Response;
   try {
-    const response = await fetch(`${API_BASE_URL}/public/demo-requests`, {
+    response = await fetch(`${API_BASE_URL}/public/demo-requests`, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(payload),
     });
-    if (response.ok) return { ok: true };
-
-    const body = (await response.json().catch(() => ({}))) as DemoRequestErrorBody;
-    return { ok: false, message: getDemoRequestErrorMessage(response.status, body) };
-  } catch {
-    return { ok: false, message: GENERIC_ERROR };
+  } catch (error) {
+    // Offline, DNS failure, or blocked by CORS: the browser hides which one from the page.
+    console.error("Demo request: could not reach", API_BASE_URL, error);
+    return { ok: false, message: NETWORK_ERROR };
   }
+
+  if (response.ok) return { ok: true };
+
+  const body = (await response.json().catch(() => ({}))) as DemoRequestErrorBody;
+  console.error(`Demo request: server responded ${response.status}`, body);
+  return { ok: false, message: getDemoRequestErrorMessage(response.status, body) };
 };

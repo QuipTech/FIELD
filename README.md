@@ -53,10 +53,10 @@ Pushing to `main` triggers [`.github/workflows/deploy-landing.yml`](.github/work
 | `S3_BUCKET_NAME`              | Target S3 bucket for the static site              |
 | `CLOUDFRONT_DISTRIBUTION_ID`  | CloudFront distribution to invalidate on deploy   |
 | `CHAT_API_URL`       | `ApiUrl` output of the `chatbot-api` stack, used by the chat widget |
-| `API_BASE_URL`       | FIELD backend API base URL (no trailing slash), used by the demo request form |
-| `TURNSTILE_SITE_KEY` | Cloudflare Turnstile site key for the chat widget |
+| `NEXT_PUBLIC_API_BASE_URL` | FIELD backend API base URL (no trailing slash), used by the demo request form |
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Cloudflare Turnstile site key for the chat widget |
 
-`CHAT_API_URL`, `API_BASE_URL` and `TURNSTILE_SITE_KEY` are built into the public JavaScript bundle, so storing them as secrets keeps them out of the repo settings UI and logs but doesn't hide them from site visitors.
+`CHAT_API_URL`, `NEXT_PUBLIC_API_BASE_URL` and `NEXT_PUBLIC_TURNSTILE_SITE_KEY` are built into the public JavaScript bundle, so storing them as secrets keeps them out of the repo settings UI and logs but doesn't hide them from site visitors.
 
 For local development, copy `.env.example` to `.env.local` and fill in the same values.
 

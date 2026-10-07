@@ -43,7 +43,7 @@ npm run deploy:guided   # first time: prompts for parameters and saves samconfig
 npm run deploy          # afterwards: one command
 ```
 
-The stack outputs `ApiUrl`. Set it as the `CHAT_API_URL` GitHub repository secret (and `NEXT_PUBLIC_CHAT_API_URL` in `.env.local` for local dev), along with `TURNSTILE_SITE_KEY`.
+The stack outputs `ApiUrl`. Set it as the `CHAT_API_URL` GitHub repository secret (and `NEXT_PUBLIC_CHAT_API_URL` in `.env.local` for local dev), along with `NEXT_PUBLIC_TURNSTILE_SITE_KEY`.
 
 ## Text-only replies
 
