@@ -44,14 +44,8 @@ Resources:
   ChatApi:
     Type: AWS::Serverless::HttpApi
     Properties:
-      CorsConfiguration:
-        AllowOrigins: !Split [",", !Ref AllowedOrigin]
-        AllowMethods:
-          - POST
-          - OPTIONS
-        AllowHeaders:
-          - content-type
-        MaxAge: 600
+      # CORS is answered by the Lambda (see src/handler.ts) so AllowedOrigin can hold several origins;
+      # SAM doesn't resolve intrinsic functions inside CorsConfiguration.AllowOrigins.
       DefaultRouteSettings:
         ThrottlingRateLimit: 5
         ThrottlingBurstLimit: 10
@@ -114,6 +108,18 @@ Resources:
             ApiId: !Ref ChatApi
             Path: /lead
             Method: POST
+        ChatPreflight:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref ChatApi
+            Path: /chat
+            Method: OPTIONS
+        LeadPreflight:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref ChatApi
+            Path: /lead
+            Method: OPTIONS
 
   ChatFunctionLogGroup:
     Type: AWS::Logs::LogGroup

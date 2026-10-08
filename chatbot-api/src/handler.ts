@@ -6,9 +6,25 @@ import { handleLead } from "./routes/lead";
 
 const MAX_BODY_BYTES = 64 * 1024;
 
+const corsHeaders = (origin: string) => ({
+  "access-control-allow-origin": origin,
+  "access-control-allow-methods": "POST, OPTIONS",
+  "access-control-allow-headers": "content-type",
+  "access-control-max-age": "600",
+  vary: "origin",
+});
+
 export const handler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyStructuredResultV2> => {
-  // API Gateway's CORS config covers browsers; this also turns away other origins that call directly.
-  if (!config.allowedOrigins.includes(event.headers.origin ?? "")) return json(403, { error: "forbidden" });
+  // Only allowed origins get CORS headers; this also turns away other origins that call directly.
+  const origin = event.headers.origin ?? "";
+  if (!config.allowedOrigins.includes(origin)) return json(403, { error: "forbidden" });
+
+  const result = await route(event);
+  return { ...result, headers: { ...result.headers, ...corsHeaders(origin) } };
+};
+
+const route = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyStructuredResultV2> => {
+  if (event.requestContext.http.method === "OPTIONS") return { statusCode: 204 };
 
   const raw = event.isBase64Encoded ? Buffer.from(event.body ?? "", "base64").toString("utf8") : event.body ?? "";
   if (Buffer.byteLength(raw) > MAX_BODY_BYTES) return json(413, { error: "payload_too_large" });
