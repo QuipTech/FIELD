@@ -13,6 +13,8 @@ import { FieldVision } from "@/components/fieldVision/FieldVision";
 import { BuiltForAssets } from "@/components/builtForAssets/BuiltForAssets";
 import { PortalShowcase } from "@/components/portalShowcase/PortalShowcase";
 import { Pricing } from "@/components/pricing/Pricing";
+import { Partners } from "@/components/partners/Partners";
+import { Specialists } from "@/components/specialists/Specialists";
 import { Faq } from "@/components/faq/Faq";
 import { DemoBanner } from "@/components/demoBanner/DemoBanner";
 import { Footer } from "@/components/footer/Footer";
@@ -38,6 +40,8 @@ const HomePage = () => {
         <BuiltForAssets />
         <PortalShowcase />
         <Pricing />
+        <Partners />
+        <Specialists />
         <Faq />
         <DemoBanner />
       </main>

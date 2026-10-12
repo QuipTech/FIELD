@@ -11,135 +11,179 @@ const TermsPage = () => {
     <LegalLayout
       eyebrow="Legal"
       title="Terms of Service"
-      lastUpdated="Placeholder — pending legal review"
-      intro="These terms govern access to and use of QuipTech FIELD, including our web app, mobile app and admin portal. By creating an account or using FIELD, you agree to these terms."
+      lastUpdated="30/06/2026"
+      intro={"These terms govern access to and use of the QuipTech FIELD platform, website, portal and apps (the \"Services\") provided by QuipTech Pty Ltd (ABN 86 655 802 083) (\"QuipTech\", \"we\", \"us\"). \"Customer\" means the business that subscribes to the Services, and \"you\" means the Customer and each person using the Services on its behalf.\n\nBy creating an account or using the Services, you agree to these terms. If you're accepting for a business, you confirm you have authority to bind it."}
       sections={[
         {
-          heading: "1. Acceptance of terms",
+          heading: "1. Order of documents",
           body: (
-            <p>
-              By accessing or using FIELD you agree to be bound by these terms on behalf of
-              yourself and, if applicable, the organisation you represent. If you do not agree,
-              do not use the platform.
-            </p>
+            <>
+              <p>{"If you've signed an order form, pilot agreement, master services agreement or partner agreement with us, that document applies together with these terms and prevails if they conflict."}</p>
+            </>
           ),
         },
         {
-          heading: "2. The service",
+          heading: "2. The Services",
           body: (
-            <p>
-              FIELD provides AI-assisted diagnostics, machine &amp; system history, a knowledge
-              centre, and remote expert support for field technicians and technical managers
-              working on critical assets. Features vary by plan; see{" "}
-              <a href="/#pricing" className="text-primary hover:text-primaryHover">
-                Pricing
-              </a>
-              .
-            </p>
+            <>
+              <p>{"FIELD gives technicians AI-assisted answers drawn from the Customer's approved documents, machine and configuration history, a knowledge library, and access to live remote experts. We may improve and change the Services over time, but won't materially reduce core functionality during a paid term without notice."}</p>
+              <p>{"Features marked beta, preview or coming soon (including FIELD Vision) are provided as-is, may change or be withdrawn, and are excluded from any service levels."}</p>
+            </>
           ),
         },
         {
-          heading: "3. Accounts &amp; roles",
+          heading: "3. Accounts and users",
           body: (
-            <p>
-              Accounts are role-scoped (technician, manager, remote expert, admin). Customers are
-              responsible for managing user access, keeping credentials confidential, and
-              promptly deactivating accounts for departed staff.
-            </p>
+            <>
+              <p>{"The Customer is responsible for its users, for assigning roles, and for keeping login details secure. Tell us promptly at "}<a href="mailto:contact@quiptechsolutions.com" className="text-primary hover:text-primaryHover">{"contact@quiptechsolutions.com"}</a>{" if you suspect unauthorised access. Accounts are for named individuals and must not be shared."}</p>
+            </>
           ),
         },
         {
-          heading: "4. Subscriptions &amp; billing",
+          heading: "4. Acceptable use",
           body: (
-            <p>
-              Standard plans are billed monthly per asset under management; Enterprise plans are
-              annual and negotiated per deal. Fees are exclusive of GST unless stated. Non-payment
-              may result in suspension after notice.
-            </p>
+            <>
+              <p>{"You must not:"}</p>
+              <ul className="list-disc space-y-1.5 pl-5">
+                <li>{"use the Services unlawfully, or to infringe anyone's rights"}</li>
+                <li>{"upload material you don't have the right to use, or malicious code"}</li>
+                <li>{"attempt to access another customer's data, or to probe, disrupt or overload the Services"}</li>
+                <li>{"reverse engineer the Services, or use them to build a competing product"}</li>
+                <li>{"enter sensitive personal information (such as health information) unless agreed in writing"}</li>
+                <li>{"resell or white-label the Services without a partner agreement"}</li>
+              </ul>
+            </>
           ),
         },
         {
-          heading: "5. Acceptable use",
+          heading: "5. Customer Data and OEM documents",
           body: (
-            <ul className="list-disc space-y-1.5 pl-5">
-              <li>No reverse engineering, scraping or reselling access to FIELD.</li>
-              <li>No uploading content you don&rsquo;t have rights to, or unlawful material.</li>
-              <li>No attempting to bypass role-based permissions or approval workflows.</li>
-              <li>AI-generated answers must be used as guidance, not as a substitute for site safety procedures.</li>
-            </ul>
+            <>
+              <p>{"The Customer owns its data, including documents, service records, photos, session content and approved knowledge records (\"Customer Data\"). The Customer grants us a non-exclusive licence to host, process and display Customer Data only as needed to provide, secure and support the Services."}</p>
+              <p>{"The Customer warrants it holds the rights, including any OEM or third-party licences, to upload and use each document it adds, for the sites and term those licences allow. We keep each customer's documents separate and do not share them with other customers. The Customer is responsible for removing documents when a licence ends."}</p>
+              <p>{"We may use aggregated, de-identified usage data (such as feature use and query volumes) to operate and improve the Services. It will not identify the Customer or any individual."}</p>
+              <p>{"Our handling of personal information is set out in our "}<a href="https://www.quiptechfield.com.au/privacy" className="text-primary hover:text-primaryHover">{"Privacy Policy"}</a>{"."}</p>
+            </>
           ),
         },
         {
-          heading: "6. Customer data",
+          heading: "6. AI answers and safety",
           body: (
-            <p>
-              Customers retain ownership of the asset, service and document data they upload.
-              QuipTech processes that data to provide the service, as described in our{" "}
-              <a href="/data-processing" className="text-primary hover:text-primaryHover">
-                Data Processing
-              </a>{" "}
-              page.
-            </p>
+            <>
+              <p>{"Answers are generated by AI from the Customer's own documents and records. They can be incomplete or wrong, including when documents are out of date or inaccurate. Each answer cites its sources so it can be checked."}</p>
+              <p>{"The Services support, and do not replace, the judgement of qualified and competent personnel. The Customer remains responsible for:"}</p>
+              <ul className="list-disc space-y-1.5 pl-5">
+                <li>{"following the OEM's procedures, its own safe work procedures, and all applicable work health and safety law, including isolation and lock-out requirements"}</li>
+                <li>{"verifying answers against the cited source before acting on them, particularly for safety-critical work"}</li>
+                <li>{"the accuracy and currency of the documents it uploads and the knowledge records it approves"}</li>
+              </ul>
+              <p>{"Remote experts provide guidance only. The technician on site and the Customer remain responsible for the work performed."}</p>
+            </>
           ),
         },
         {
-          heading: "7. Intellectual property",
+          heading: "7. Hardware",
           body: (
-            <p>
-              FIELD, the QuipTech name and logo, and the underlying software are the property of
-              QuipTech Pty Ltd. Nothing in these terms transfers that ownership to customers or
-              users.
-            </p>
+            <>
+              <p>{"Smart glasses and other devices are supplied under a separate quote, either by us or by a reseller, and are subject to the manufacturer's warranty and the terms of that supply."}</p>
+            </>
           ),
         },
         {
-          heading: "8. Availability &amp; support",
+          heading: "8. Fees and payment",
           body: (
-            <p>
-              We aim for high availability. Standard plans do not include a contractual uptime SLA; Enterprise SLAs are
-              defined in the order form.
-            </p>
+            <>
+              <p>{"Fees are set out in your order form or plan, charged per asset under management unless agreed otherwise, and exclude GST. Subscription fees are billed monthly in advance (or annually for Enterprise); usage above an included allowance is billed in arrears. Onboarding is billed once."}</p>
+              <p>{"Invoices are payable within 30 days, or by card through our payment provider. We may suspend the Services on 14 days' notice for overdue amounts. We may change prices for a renewal term on at least 30 days' notice."}</p>
+            </>
           ),
         },
         {
-          heading: "9. Limitation of liability",
+          heading: "9. Pilots and demos",
           body: (
-            <p>
-              To the extent permitted by law, QuipTech&rsquo;s liability arising from use of
-              FIELD is limited to fees paid in the twelve months preceding the claim. FIELD
-              provides AI-assisted guidance and does not replace OEM procedures or professional
-              judgement on site.
-            </p>
+            <>
+              <p>{"Pilots run for the period and fee in the pilot agreement and end on the agreed date unless converted to a paid plan. Demo tenants contain synthetic data and must not be used for live operations or to store real Customer Data."}</p>
+            </>
           ),
         },
         {
-          heading: "10. Termination",
+          heading: "10. Availability and support",
           body: (
-            <p>
-              Either party may terminate for material breach not cured within a reasonable
-              notice period. On termination, customer data is retained per our{" "}
-              <a href="/privacy" className="text-primary hover:text-primaryHover">
-                Privacy Policy
-              </a>{" "}
-              and then deleted or anonymised.
-            </p>
+            <>
+              <p>{"We aim to keep the Services available and will give advance notice of planned maintenance where we can. Support is provided as described in your plan. Any service levels apply only where set out in a signed agreement."}</p>
+            </>
           ),
         },
         {
-          heading: "11. Governing law",
-          body: <p>These terms are governed by the laws of Australia.</p>,
+          heading: "11. Intellectual property",
+          body: (
+            <>
+              <p>{"We own the Services, including the software, design and documentation, and any improvements. Except for the right to use the Services under these terms, nothing transfers our intellectual property to you. If you give us feedback, we may use it without obligation."}</p>
+            </>
+          ),
         },
         {
-          heading: "12. Changes &amp; contact",
+          heading: "12. Confidentiality",
           body: (
-            <p>
-              We may update these terms from time to time; material changes will be notified to
-              account admins. Questions? Reach us via our{" "}
-              <a href="/contact" className="text-primary hover:text-primaryHover">
-                contact page
-              </a>
-              .
-            </p>
+            <>
+              <p>{"Each party will keep the other's confidential information confidential and use it only for the purposes of this relationship, except where disclosure is required by law."}</p>
+            </>
+          ),
+        },
+        {
+          heading: "13. Australian Consumer Law",
+          body: (
+            <>
+              <p>{"Nothing in these terms excludes, restricts or modifies any right or remedy, or any guarantee, that cannot lawfully be excluded under the Competition and Consumer Act 2010 (Cth), including the Australian Consumer Law. Where we're permitted to limit our liability for breach of such a guarantee, our liability is limited to resupplying the Services or paying the cost of having them resupplied."}</p>
+            </>
+          ),
+        },
+        {
+          heading: "14. Liability",
+          body: (
+            <>
+              <p>{"To the extent permitted by law:"}</p>
+              <ul className="list-disc space-y-1.5 pl-5">
+                <li>{"the Services are provided without warranties other than those set out in these terms or that can't be excluded"}</li>
+                <li>{"neither party is liable for indirect or consequential loss, or for loss of profit, revenue, production or data, however caused"}</li>
+                <li>{"each party's total liability under or in connection with these terms is limited to the fees paid or payable by the Customer in the 12 months before the event giving rise to the claim"}</li>
+              </ul>
+              <p>{"These limits do not apply to the Customer's obligation to pay fees, to breach of confidentiality, to either party's indemnity, or to liability that can't be limited by law."}</p>
+            </>
+          ),
+        },
+        {
+          heading: "15. Indemnities",
+          body: (
+            <>
+              <p>{"The Customer indemnifies us against third-party claims arising from Customer Data, including claims that it infringes an OEM's or other third party's rights, or from use of the Services in breach of these terms."}</p>
+              <p>{"We indemnify the Customer against third-party claims that the Services, as provided by us, infringe that party's Australian intellectual property rights."}</p>
+            </>
+          ),
+        },
+        {
+          heading: "16. Term, suspension and termination",
+          body: (
+            <>
+              <p>{"Subscriptions run for the term in your order form and renew for the same period unless either party gives notice before renewal. Either party may terminate if the other materially breaches these terms and doesn't remedy it within 30 days of notice, or becomes insolvent. We may suspend access immediately where needed to protect the Services, other customers or anyone's safety."}</p>
+              <p>{"On termination, the Customer may export its Customer Data for [30] days. After that, we delete or de-identify it within [90] days, except where the law requires us to keep it."}</p>
+            </>
+          ),
+        },
+        {
+          heading: "17. General",
+          body: (
+            <>
+              <p>{"We may update these terms by posting a new version and, for material changes, giving customers 30 days' notice; continued use after that date means acceptance. Neither party is liable for delays caused by events beyond its reasonable control. These terms are governed by the laws of Queensland, Australia, and each party submits to the courts of Queensland."}</p>
+            </>
+          ),
+        },
+        {
+          heading: "18. Contact",
+          body: (
+            <>
+              <p>{"QuipTech Pty Ltd (ABN 86 655 802 083). Email: "}<a href="mailto:contact@quiptechsolutions.com" className="text-primary hover:text-primaryHover">{"contact@quiptechsolutions.com"}</a></p>
+            </>
           ),
         },
       ]}

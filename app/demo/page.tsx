@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Icon } from "@/components/icons/Icon";
 import { PageShell } from "@/components/common/PageShell";
 import { DemoRequestForm } from "@/components/demoRequest/DemoRequestForm";
-import { ProductSpecialists } from "@/components/demoRequest/ProductSpecialists";
+import { Specialists } from "@/components/specialists/Specialists";
 import { trustedLogos } from "@/lib/trustedLogos";
 
 export const metadata: Metadata = {
@@ -68,7 +68,7 @@ const DemoPage = () => {
         </div>
       </section>
 
-      <ProductSpecialists />
+      <Specialists />
     </PageShell>
   );
 };

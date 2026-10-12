@@ -28,7 +28,7 @@ const LogoItem = ({ logo }: { logo: TrustedLogo }) => (
 export const TrustedMarquee = () => {
   return (
     <section
-      id="partners"
+      id="trusted-brands"
       className="scroll-mt-28 overflow-hidden border-b border-borderGray bg-surfaceGrayAlt px-6 py-10 min-[900px]:scroll-mt-32 min-[900px]:px-16"
     >
       <span className="mb-6 block text-center text-xs font-semibold uppercase tracking-[0.08em] text-mutedGray">
