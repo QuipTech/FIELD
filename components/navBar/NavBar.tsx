@@ -51,7 +51,7 @@ export const NavBar = () => {
           Book a demo
         </a>
         <a
-          href="https://staging.quiptechfield.com.au/"
+          href="https://app.quiptechfield.com.au/"
           className="hidden h-10 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-primary px-5 text-sm font-semibold text-white min-[1150px]:inline-flex"
         >
           Log in / Sign up
