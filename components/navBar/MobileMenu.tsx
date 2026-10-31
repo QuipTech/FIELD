@@ -29,7 +29,7 @@ export const MobileMenu = ({ open, onClose }: MobileMenuProps) => {
         Book a demo
       </a>
       <a
-        href="https://staging.quiptechfield.com.au/"
+        href="https://app.quiptechfield.com.au/"
         onClick={onClose}
         className="mt-1 flex h-11 items-center justify-center rounded-full bg-primary text-[15px] font-semibold text-white"
       >
